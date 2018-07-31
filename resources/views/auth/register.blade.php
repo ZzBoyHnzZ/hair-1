@@ -4,9 +4,7 @@
 @section('content') --}}
     <div class="container col-md-6 col-md-offset-3">
         <div class="well well bs-component">
-
-            <form class="form-horizontal" method="post">
-
+            {!! Form::open(['method'=>'POST', 'class'=>'form-horizontal']) !!}
                 @foreach ($errors->all() as $error)
                     <p class="alert alert-danger">{{ $error }}</p>
                 @endforeach
@@ -16,40 +14,40 @@
                 <fieldset>
                     <legend>Register an account</legend>
                     <div class="form-group">
-                        <label for="email" class="col-lg-2 control-label">Email</label>
+                        {!! Form::label('email', null, ['class'=>'col-lg-2 control-label', 'value'=>'email']) !!}
                         <div class="col-lg-10">
-                            <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="{{ old('email') }}">
+            {!! Form::text('email', '', ['id'=>'email', 'class'=>'form-control', 'placeholder'=>'email']) !!} 
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="phone" class="col-lg-2 control-label">Phone</label>
+                    <div class="form-group">                     
+                        {!! Form::label('phone',null, ['class'=>'col-lg-2 control-label', 'value'=>'phone']) !!}
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" id="phone" placeholder="Phone" name="phone" value="{{ old('phone') }}">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password" class="col-lg-2 control-label">Password</label>
-                        <div class="col-lg-10">
-                            <input type="password" class="form-control"  name="password">
+            {!! Form::text('phone', '', ['id'=>'phone', 'class'=>'form-control', 'placeholder'=>'phone']) !!} 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="col-lg-2 control-label">Confirm password</label>
+                    {!! Form::label('password', null, ['class'=>'col-lg-2 control-label','value'=>'password']) !!}
                         <div class="col-lg-10">
-                            <input type="password" class="form-control"  name="password_confirmation">
+                        {!! Form::password('password', ['class'=>'form-control']) !!} 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                    {!! Form::label('password', null, ['class'=>'col-lg-2 control-label','value'=>'confirm_password']) !!}
+                        <div class="col-lg-10">
+                        {!! Form::password('confirm_password', ['class'=>'form-control']) !!} 
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
-                            <button type="reset" class="btn btn-default">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Register</button>
+                           {!! Form::button('cancel', ['class'=>'btn btn-primary']) !!}
+                            {!! Form::button('register', ['class'=>'btn btn-primary']) !!}
                         </div>
                     </div>
                 </fieldset>
-            </form>
+                {!! Form::close() !!}
         </div>
     </div>
 {{-- @endsection --}}

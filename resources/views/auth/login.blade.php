@@ -4,39 +4,34 @@
 @section('content') --}}
     <div class="container col-md-6 col-md-offset-3">
         <div class="well well bs-component">
-
-            <form class="form-horizontal" method="post">
-
+        {{ Form::open(['method'=>'POST', 'class'=>'form-horizontal']) }}
                 @foreach ($errors->all() as $error)
                     <p class="alert alert-danger">{{ $error }}</p>
                 @endforeach
 
-                {!! csrf_field() !!}
-
-                <fieldset>
-                    <legend>Login</legend>
-
-                     <div class="form-group">
-                        <label for="email" class="col-lg-2 control-label">Email</label>
-                        <div class="col-lg-10">
-                            <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="{{ old('email') }}">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password" class="col-lg-2 control-label">Password</label>
-                        <div class="col-lg-10">
-                            <input type="password" class="form-control"  name="password">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary">Login</button>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
+                {{-- {!! csrf_field() !!} --}}
+        <fieldset>
+            <legend>Login</legend>
+            <div class="form-group">
+            {{ Form::label('email', null, ['value' =>'email']) }}
+            {{-- <label for="email">Email</label> --}}
+                <div class="col-lg-10">
+                    {{ Form::text('email','',['id'=>'email','placeholder'=>'Email']) }} 
+                </div>
+            </div>
+            <div class="form-group">
+            {{ Form::label('password',null, ['value'=>'pasword','class'=>'col-lg-2 control-label']) }}
+                <div class="col-lg-10">
+                {{ Form::password('password',['class'=>'form-control']) }}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+            {{ Form::button('Login',['class'=>'btn btn-primary']) }}
+                </div>
+            </div>
+         </fieldset>   
+        {{ Form::close() }}
         </div>
     </div>
 {{-- @endsection --}}
