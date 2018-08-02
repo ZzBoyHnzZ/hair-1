@@ -20,5 +20,7 @@ Route::get('login', function () {
 Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');
 Route::post('users/register', 'Auth\RegisterController@register');
 Route::get('users/logout', 'Auth\LoginController@logout');
-Route::get('users/login', 'Auth\LoginController@showLoginForm');
-Route::post('users/login', 'Auth\LoginController@login');
+Route::get('home','Site\SiteController@index');
+Route::post('index1','Site\SiteController@index1');
+Route::post('index2','Site\SiteController@index2');
+Route::post('home','Site\SiteController@index');
