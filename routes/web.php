@@ -42,9 +42,5 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function() {
     Route::post('renderbookings/{id}/edit', 'RenderBookingController@update');
     Route::delete('renderbookings/{id}', 'RenderBookingController@destroy');
 });
-Route::get('home', 'Site\SiteController@create');
-Route::post('home', 'Site\SiteController@store');
-Route::get('booking', 'Site\SiteController@creates');
-Route::post('booking', 'Site\SiteController@stores');
-Route::get('bookings', 'Site\SiteController@creates1');
-Route::post('bookings', 'Site\SiteController@stores1');
+Route::get('booking', 'Site\SiteController@createBooking');
+Route::get('bookings','Site\SiteController@storeBooking')->name('bookings');

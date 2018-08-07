@@ -5,38 +5,26 @@ namespace App\Http\Controllers\Site;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Salon;
+use App\User;
+use App\Booking;
+use App\Http\Requests\SiteFormRequest;
 class SiteController extends Controller
 {
-    public function create()
-    {
-        return view('sites.booking');
-    }
-
-    public function store()
-    {
-        return redirect('/booking')->with('status', trans(''));
-    }
-
-    public function creates()
+    public function createBooking()
     {
         $salon = Salon::all();
 
-        return view('sites.booking1', ['salon' => $salon]);
+        return view('sites.booking', ['salon' => $salon]);
     }
 
-    public function stores()
+    public function storeBooking(Request $request)
     {
-        return redirect('/bookings')->with('status', trans(''));
-    }
-
-    public function creates1()
-    {
-        $salon = Salon::all();
-
-        return view('sites.booking2', ['salon' => $salon]);
-    }
-
-    public function stores1()
-    {
+        $booking = new Booking;
+        $booking = $booking->create([
+            'name' => $request['name'],
+            'phone_number' => $request['phone_number'],
+            'salon_id' => $request['salon']
+        ]);
+        $booking->save();
     }
 }
