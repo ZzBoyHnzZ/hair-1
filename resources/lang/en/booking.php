@@ -9,4 +9,5 @@ return [
     'salon' => 'Choose Salon',
     'stylist' => 'Choose StyList',
     'book' => 'Booking',
+    'status' => 'chưa hoàn thành',
 ];
