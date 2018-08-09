@@ -47,6 +47,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::get('renderbookings/{id}/edit', 'RenderBookingController@edit');
     Route::post('renderbookings/{id}/edit', 'RenderBookingController@update');
     Route::delete('renderbookings/{id}', 'RenderBookingController@destroy');
+
+    Route::get('bookings', 'BookingController@index')->name('bookings.index');
+    Route::get('bookings/{id}/edit', 'BookingController@edit');
+    Route::post('bookings/{id}/edit', 'BookingController@update');
+    Route::delete('bookings/{id}', 'BookingController@destroy');
 });
 Route::get('home', 'Site\SiteController@create');
 Route::post('home', 'Site\SiteController@store');
@@ -60,5 +65,3 @@ Route::get('stylists/create', 'TimesheetController@create');
 Route::post('stylists/create', 'TimesheetController@store');
 Route::get('stylists/{id}/edit', 'TimesheetController@edit');
 Route::post('stylists/{id}/edit', 'TimesheetController@update');
-
-

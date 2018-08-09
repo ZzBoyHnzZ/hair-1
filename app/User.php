@@ -33,6 +33,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Salon', 'salon_id', 'id');
     }
 
+    public function bookings()
+    {
+        return $this->hasMany('App\Booking', 'stylist_id', 'id');
+    }
+
     public function setPasswordAttribute($password)
     {   
         $this->attributes['password'] = bcrypt($password);

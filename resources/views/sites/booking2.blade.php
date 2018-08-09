@@ -6,6 +6,15 @@
             <div class="col-md-12 col-sm-12 col-xs-12 choice_address" id="choice_list_time">
                 <div class="price-box to-animate">
                     <div class="row">
+                        {{ Form::Open(['method' => 'POST', 'enctype' => 'multipart/form-data']) }}
+                            @if (session('status'))
+                                <div class="alert alert-success">
+                                    {{ session('status') }}
+                                </div>
+                            @endif
+                        {{ Form::hidden('name', session('name')) }}
+                        {{ Form::hidden('phone_number', session('phone_number')) }}
+                        {{ Form::hidden('salon_id', session('salon_id')) }}
                         <div class="wrap-stylist-choice col-md-5 col-sm-12 row1">
                             <label class="text-success form-name">
                                 <h4>
@@ -14,7 +23,12 @@
                                 </h4>
                             </label>
                             <div class="form-group">
-                                <select class="form-control input-lg">
+                                <select class="form-control input-lg" name="user">
+                                    @foreach($user as $us)
+                                        @if($us->salon_id == session('salon_id'))
+                                            <option value="{{ $us->id }}"> {{$us->name}} </option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -26,22 +40,53 @@
                                 </h4>
                             </label>
                             <div class="form-group">
-                                <select class="form-control input-lg">
+                                <select class="form-control input-lg" name="timesheetstylist">
+                                    @foreach($timesheetstylist as $tss)
+                                        @if($tss->mon == 'yes')
+                                            <option id="{{ $tss->id }}">
+                                                {{ trans('main.mon') }}
+                                            </option>
+                                        @endif
+                                        @if($tss->tues == 'yes')
+                                            <option id="{{ $tss->id }}">
+                                                {{ trans('main.tue') }}
+                                            </option>
+                                        @endif
+                                        @if($tss->wed == 'yes')
+                                            <option id="{{ $tss->id }}">
+                                                {{ trans('main.wed') }}
+                                            </option>
+                                        @endif
+                                        @if($tss->thur == 'yes')
+                                            <option id="{{ $tss->id }}">
+                                                {{ trans('main.thur') }}
+                                            </option>
+                                        @endif
+                                        @if($tss->fri == 'yes')
+                                            <option id="{{ $tss->id }}">
+                                                {{ trans('main.fri') }}
+                                            </option>
+                                        @endif
+                                        @if($tss->sat == 'yes')
+                                        <option id="{{ $tss->id }}">
+                                                {{ trans('main.sat') }}
+                                            </option>
+                                        @endif
+                                        @if($tss->sun == 'yes')
+                                        <option id="{{ $tss->id }}">
+                                                {{ trans('main.sun') }}
+                                            </option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
-                        {{ Form::Open(['method' => 'POST', 'enctype' => 'multipart/form-data']) }}
-                            @if (session('status'))
-                                <div class="alert alert-success">
-                                    {{ session('status') }}
-                                </div>
-                            @endif
                             <div class="form-group">
                             <a href="{{ asset('/booking') }}" class="btn btn-danger">{{ __('Prev') }}</a>
                             {!! Form::submit(trans('booking.book'), ['type' => 'submit', 'class' => 'btn btn-primary', 'name' => 'submit']) !!}
                             </div>
-                        {{ Form::close() }}
                         </div>
                         <div class="clear"></div>
+                        {{ Form::close() }}
                     </div>
                 </div>
             </div>
